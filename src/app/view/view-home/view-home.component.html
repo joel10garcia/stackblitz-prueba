@@ -1,0 +1,56 @@
+<div class="page">
+    <div class="page__header">
+      <span class="page__header_title">LOGIN</span>
+    </div>
+  
+    <div class="page__content">
+      <form class="page__content_form" [formGroup]="form" (ngSubmit)="onSubmitForm()">
+        <div class="page__content_form--field">
+          <label for="mail">Mail</label>
+          <input 
+            id="mail" 
+            type="email" 
+            formControlName="mail" 
+            placeholder="example@gmail.com" 
+            class="input"
+            required
+          />
+          <div class="error-message" *ngIf="form.get('mail')?.hasError('required') && form.get('mail')?.touched">
+            Email es requerido
+          </div>
+          <div class="error-message" *ngIf="form.get('mail')?.hasError('email') && form.get('mail')?.touched">
+            Email no es válido
+          </div>
+        </div>
+  
+        <div class="page__content_form--field">
+          <label for="password">Password</label>
+          <input 
+            id="password" 
+            type="password" 
+            formControlName="password" 
+            placeholder="Introduce password" 
+            class="input"
+            required
+          />
+          <div class="error-message" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+            Contraseña es requerida
+          </div>
+          <div class="error-message" *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+            Mínimo 8 caracteres
+          </div>
+        </div>
+  
+        <div class="page__content_form--button">
+          <button 
+            type="submit" 
+            class="button" 
+            [disabled]="!form.valid"
+          >
+            ENTER
+          </button>
+        </div>
+      </form>
+    </div>
+</div>
+  
